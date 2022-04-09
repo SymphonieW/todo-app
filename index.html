@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <style>
+        body {
+            display: grid;
+            place-content: center;
+            height: 50vh;
+            background-image: url('bridge.jpeg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color:lightgray;
+        }
+       ul > li {
+        /*user task*/
+        display: grid;
+            width:500px;
+            height: 50px;
+            grid-template-columns: 3fr .5fr .5fr;
+            border: none;
+            padding: 15px;
+            background-color: white;
+            border-radius: 10px;
+            margin: 15px 30px;
+    
+
+         }
+         /* edit and delete button */          
+        ul > li > button {
+            background-color: lightgray;
+            border: none;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 30px;
+            margin: auto;
+
+        }
+
+        h1 {
+        font-family:Arial, sans-serif;
+        }
+        /*add something to do*/
+        input[type="text"] {
+            border: none;
+            padding: 15px;
+            background-color: white;
+            border-radius: 10px;
+            margin: 15px 30px;
+        }
+        
+        p{
+         font-family:Arial, sans-serif;  
+
+        }
+        #addButton{
+            place-content: center;
+            width: 80px;
+            margin: auto;
+            background-color: black;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 30px;
+        }
+    
+    </style>
+</head>
+<body>
+
+            <h1>To Do List</h1>
+            <input id="userInput" type="text" placeholder="Add something to do">
+            <button id="addButton">+</button>
+            <section>
+                <ul id="tasks">
+                </ul>
+            </section>
+            <script>
+                document.querySelector('#addButton').onclick = function() {
+                    if(document.querySelector('#userInput').value.length === 0) {
+                        alert('Please enter a task!')
+                    } else {
+                        document.querySelector('#tasks').innerHTML +=
+                        `<li>
+                            <p>${document.querySelector('#userInput').value}</p>
+                            <button>edit</button>
+                            <button class="delete">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </li>`
+                        
+                        var current_task = document.querySelectorAll(".delete");
+                        for(var i = 0; i<current_task.length; i++){
+                            current_task[i].onclick = function(){
+                                this.parentNode.remove();
+                            
+                            }
+                        }
+                    }
+                }
+            </script>
+</body>
+</html>
